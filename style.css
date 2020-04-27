@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: rgb(35, 149, 255);
+  background-color: #4D97FF;
   font-family: 'Manrope', sans-serif;
   text-align: center;
 }
@@ -26,7 +26,7 @@ body {
 }
 
 #fakeButton {
-  color: rgb(35, 149, 255);
+  color: #4D97FF;
   text-decoration: none;
   background-color: white;
   padding-left: 20px;
@@ -40,14 +40,14 @@ body {
 
 #fakeButton:hover {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-  background-color: rgb(58, 153, 255);
+  background-color: #4D97FF;
   color: white;
   transition: 0.2s;
 }
 
 #fakeButton:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  background-color: rgb(50, 137, 229);
+  background-color: #4588E5;
   color: white;
   transition: 0.1s;
 }
