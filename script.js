@@ -7,7 +7,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
     var reader = new FileReader();
     var file = event.target.files[i];
     reader.readAsText(file);
-    reader.onload = function() {
+    reader.onload = function(event) {
       var save = event.target.result;
       console.log(save);
       window.sessionStorage.setItem(FILE_KEY, save);
