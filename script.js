@@ -1,30 +1,23 @@
 document.getElementById("fakeButton").addEventListener("click", function() {
   document.getElementById("fileUpload").click();
 });
-var FILE_KEY = 'save.xml';
-document.querySelector('#fileUpload').addEventListener('change', handleFileUpload, false);
-console.log('previous save: ', retrieveSave());
-var reader = new FileReader();
-reader.onload = handleFileRead;
-
-function handleFileUpload(event) {
-  var file = event.target.files[0];
-  reader.readAsText(file);
-}
-
-function handleFileRead(event) {
-  var save = event.target.result;
-  console.log(save);
-  window.localStorage.setItem(FILE_KEY, save);
-  download("test.svg", convert(FILE_KEY));
-}
-
-function retrieveSave() {
-  return localStorage.getItem(FILE_KEY);
-}
+document.querySelector('#fileUpload').addEventListener('change', function(event) {
+  for (let i = 0; i < event.target.files.length; i++) {
+    var FILE_KEY = 'file-' + i + '.xml';
+    var reader = new FileReader();
+    var file = event.target.files[i];
+    reader.readAsText(file);
+    reader.onload = function() {
+      var save = event.target.result;
+      console.log(save);
+      window.sessionStorage.setItem(FILE_KEY, save);
+      download("file-" + (i + 1) + ".svg", convert(FILE_KEY));
+    };
+  }
+}, false);
 
 function convert(file) {
-  let toConvert = localStorage.getItem(file);
+  let toConvert = sessionStorage.getItem(file);
   if (toConvert.includes('width="100%" height="100%"')) {
     toConvert = toConvert.replace('width="100%" height="100%"', '');
   }
