@@ -22,7 +22,8 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
       // save the plaintext in sessionStorage under the file key
       window.sessionStorage.setItem(FILE_KEY, save);
       // download the file using several functions, documented after this
-      download("file-" + (i + 1) + ".svg", convert(FILE_KEY));
+      // notice the filename: it's the original filename plus "-fixed" before the .SVG extension
+      download(file.name.slice(0, -4) + "-fixed.svg", convert(FILE_KEY));
     };
   }
 }, false);
@@ -108,7 +109,8 @@ function handleDrop(e) {
       // save the file with its key in sessionStorage
       window.sessionStorage.setItem(FILE_KEY, save);
       // use the download and convert functions to save the file
-      download("file-" + (i + 1) + ".svg", convert(FILE_KEY));
+      // notice the filename: it's the original filename plus "-fixed" before the .SVG extension
+      download(file.name.slice(0, -4) + "-fixed.svg", convert(FILE_KEY));
     };
   }
 }
