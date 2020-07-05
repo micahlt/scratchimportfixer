@@ -5,3 +5,9 @@ https://micahlindley.com/scratchimportfixer
 
 ## Limitations
 Due to technical limitations, this web app may not work for truly huge SVGs.  If your file is over 20MB, you could experience issues.
+
+### Support me
+
+If you want to support me, you can buy me a coffee:
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/lato-red.png)](https://buymeacoff.ee/micahlt)
