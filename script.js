@@ -2,18 +2,25 @@
 document.getElementById("fakeButton").addEventListener("click", function() {
   document.getElementById("fileUpload").click();
 });
+let file;
 // get files from upload
 document.querySelector('#fileUpload').addEventListener('change', function(event) {
+  var files = Array.from(event.target.files);
+  let titleArray = [];
+  files.forEach((el) => {
+    titleArray.push(el.name);
+  })
   // loop through all of the uploaded files
-  for (let i = 0; i < event.target.files.length; i++) {
+  for (let i = 0; i < files.length; i++) {
     // set a file key for each file
     // notice we upload the file as XML, as that's what SVG really is at the core
     var FILE_KEY = 'file-' + i + '.xml';
     // set up a new FileReader as the reader variable
     var reader = new FileReader();
     // set the file to the selected file
-    var file = event.target.files[i];
+    file = files[i];
     // read the XML file as plaintext with FileReader
+    console.log(file.name);
     reader.readAsText(file);
     // when the reader is ready, pass event into a new function
     reader.onload = function(event) {
@@ -23,7 +30,7 @@ document.querySelector('#fileUpload').addEventListener('change', function(event)
       window.sessionStorage.setItem(FILE_KEY, save);
       // download the file using several functions, documented after this
       // notice the filename: it's the original filename plus "-fixed" before the .SVG extension
-      download(file.name.slice(0, -4) + "-fixed.svg", convert(FILE_KEY));
+      download(titleArray[i].slice(0, -4) + "-fixed.svg", convert(FILE_KEY));
     };
   }
 }, false);
@@ -88,9 +95,13 @@ document.getElementById('upload').addEventListener('drop', handleDrop, false)
 // the meaty stuff of handling drag-and-drop
 function handleDrop(e) {
   // create an event.dataTransfer variable called dt
-  let dt = e.dataTransfer
+  let dt = e.dataTransfer;
   // set the files to process to the element's dataTransfer files
-  let files = dt.files
+  var files = Array.from(dt.files);
+  let titleArray = [];
+  files.forEach((el) => {
+    titleArray.push(el.name);
+  })
   // loop through the files (if there are multiple)
   for (let i = 0; i < files.length; i++) {
     // set a unique file key
@@ -110,7 +121,7 @@ function handleDrop(e) {
       window.sessionStorage.setItem(FILE_KEY, save);
       // use the download and convert functions to save the file
       // notice the filename: it's the original filename plus "-fixed" before the .SVG extension
-      download(file.name.slice(0, -4) + "-fixed.svg", convert(FILE_KEY));
+      download(titleArray[i].slice(0, -4) + "-fixed.svg", convert(FILE_KEY));
     };
   }
 }
